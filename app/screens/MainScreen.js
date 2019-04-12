@@ -14,6 +14,7 @@ import { Divider } from 'react-native-elements';
 import Constants from '../constants/Constants';
 import { getData } from '../services/Service';
 import PropTypes from 'prop-types';
+import Config from '../constants/Configuration';
 
 const styles = StyleSheet.create({
     container: {
@@ -78,7 +79,7 @@ class MainScreen extends React.Component {
 
     componentDidMount() {
         var item = this.props.navigation.getParam('item');
-        const promise = getData('http://dev.4all.com:3003/tarefa/' + item);
+        const promise = getData(Config.api_key_static_map + item);
         promise.then(data => this.setState({ data: data }));
     }
 
@@ -138,7 +139,7 @@ class MainScreen extends React.Component {
                             longitude={longitude ? longitude.toString() : '0'}
                             zoom={13}
                             size={{ width: Math.round(Dimensions.get('window').width), height: 100 }}
-                            apiKey={'YOUR_API_KEY_HERE'}
+                            apiKey={Config.api_key_static_map}
                         />
                         <View style={styles.barMap}>
                             <Text style={{ fontSize: 10, color: 'white', paddingHorizontal: 10 }}>{endereco}</Text>

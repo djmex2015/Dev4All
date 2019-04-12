@@ -2,6 +2,7 @@ import React from 'react';
 import { View, TouchableOpacity, Text, StyleSheet, FlatList } from 'react-native';
 import { getData } from '../services/Service';
 import Constants from '../constants/Constants';
+import Config from '../constants/Configuration';
 
 const styles = StyleSheet.create({
     container: {
@@ -38,7 +39,7 @@ export default class InitialScreen extends React.Component {
     }
 
     componentDidMount() {
-        const promise = getData('http://dev.4all.com:3003/tarefa');
+        const promise = getData(Config.url_get);
         promise.then(data => this.setState({ users: data.lista }));
     }
 
